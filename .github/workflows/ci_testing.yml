@@ -7,6 +7,24 @@ on:
     branches: [ main ]
 
 jobs:
+
+create-envfile:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Make envfile
+    uses: SpicyPizza/create-envfile@v1.3
+    with:
+      envkey_DEBUG: ${{ secrets.DEBUG }}
+      envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      envkey_NAME: ${{ secrets.NAME }}
+      envkey_USER: ${{ secrets.USER }}
+      envkey_PASSWORD: ${{ secrets.PASSWORD }}
+      envkey_HOST: ${{ secrets.HOST }}
+      envkey_PORT: ${{ secrets.PORT }}
+      directory: secrets
+      file_name: keys.env
+      fail_on_empty: false
+
   test:
     runs-on: ubuntu-latest
     services:
