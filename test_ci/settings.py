@@ -10,7 +10,7 @@ env = environ.Env(DEBUG=(bool, True))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env_path = BASE_DIR / Path("secrets/keys.env")
+env_path = BASE_DIR / Path("keys.env")
 
 environ.Env.read_env(env_path),
 

@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./secrets/keys.env
+      - keys.env
   db:
     image: postgres:13
     restart: always
@@ -23,7 +23,7 @@ services:
     ports:
       - 5432:5432
     env_file:
-      - ./secrets/keys.env
+      - keys.env
     # environment:
     #   - POSTGRES_PASSWORD=12345678
 

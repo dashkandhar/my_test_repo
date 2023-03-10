@@ -57,6 +57,7 @@ coverage.xml
 
 # env-variables
 secrets/*
+*.env
 
 # Django stuff:
 *.log
