@@ -56,7 +56,7 @@ coverage.xml
 *.pot
 
 # env-variables
-secrets.env/*
+secrets/*
 
 # Django stuff:
 *.log

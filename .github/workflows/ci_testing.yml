@@ -1,0 +1,38 @@
+name: Django Test
+
+on:
+  push:
+    branches: [ main, feat/*, fix/*]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Build and test Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: false
+
+    - name: Build and test Docker image
+      run: |
+        docker-compose build -d
+        docker-compose run web python manage.py test
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: test-results.xml

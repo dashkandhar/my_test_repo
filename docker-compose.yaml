@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: always
+    command: bash -c 'python3 manage.py runserver 0.0.0.0:8002'
+    volumes:
+      - .:/app
+    ports:
+      - 8002:8002
+    expose:
+      - 8002
+    depends_on:
+      - db
+    env_file:
+      - ./secrets/keys.env
+  db:
+    image: postgres:13
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    env_file:
+      - ./secrets/keys.env
+    # environment:
+    #   - POSTGRES_PASSWORD=12345678
+
+
+volumes:
+  postgres_data:
