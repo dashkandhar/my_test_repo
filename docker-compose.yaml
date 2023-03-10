@@ -17,6 +17,7 @@ services:
       - keys.env
   db:
     image: postgres:13
+    hostname: db
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
