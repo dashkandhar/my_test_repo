@@ -9,6 +9,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DB_HOST: ${{ secrets.HOST }}
+      DB_PORT: ${{ secrets.PORT }}
+      DB_NAME: ${{ secrets.NAME }}
+      DB_USER: ${{ secrets.USER }}
+      DB_PASSWORD: ${{ secrets.PASSWORD }}
     services:
       db:
         image: postgres
@@ -45,13 +52,7 @@ jobs:
       run: |
         docker-compose build -d
         docker-compose run web python manage.py test
-      env:
-        SECRET_KEY: ${{secrets.SECRET_KEY}}
-        DB_HOST: localhost
-        DB_PORT: 5432
-        DB_NAME: test_db
-        DB_USER: postgres
-        DB_PASSWORD: admin
+
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
