@@ -30,13 +30,13 @@ jobs:
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1.3
       with:
-        DEBUG: ${{ secrets.DEBUG }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        NAME: ${{ secrets.NAME }}
-        USER: ${{ secrets.USER }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-        HOST: ${{ secrets.HOST }}
-        PORT: ${{ secrets.PORT }}
+        envkey_DEBUG: ${{ secrets.DEBUG }}
+        envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        envkey_NAME: ${{ secrets.NAME }}
+        envkey_USER: ${{ secrets.USER }}
+        envkey_PASSWORD: ${{ secrets.PASSWORD }}
+        envkey_HOST: ${{ secrets.HOST }}
+        envkey_PORT: ${{ secrets.PORT }}
         file_name: secrets/keys.env
         fail_on_empty: false
 
