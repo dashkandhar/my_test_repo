@@ -39,14 +39,14 @@ jobs:
       with:
         context: .
         push: false
-      env:
-        SECRET_KEY: ${{secrets.SECRET_KEY}}
+       
 
     - name: Build and test Docker image
       run: |
         docker-compose build -d
         docker-compose run web python manage.py test
       env:
+        SECRET_KEY: ${{secrets.SECRET_KEY}}
         DB_HOST: localhost
         DB_PORT: 5432
         DB_NAME: test_db
