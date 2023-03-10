@@ -32,7 +32,7 @@ jobs:
         envkey_HOST: ${{ secrets.HOST }}
         envkey_PORT: ${{ secrets.PORT }}
         file_name: keys.env
-        fail_on_empty: false
+        fail_on_empty: true
     
     - name: Build and test Docker image
       uses: docker/build-push-action@v2
