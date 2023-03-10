@@ -21,9 +21,6 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Configure DNS
-      run: echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-
     - name: Build and test Docker image
       uses: docker/build-push-action@v2
       with:
@@ -49,7 +46,7 @@ jobs:
         docker-compose run web python manage.py test
       env:
         # The hostname used to communicate with the PostgreSQL service container
-        POSTGRES_HOST: db
+        POSTGRES_HOST: "localhost"
         # The default PostgreSQL port
         POSTGRES_PORT: 5432
 
