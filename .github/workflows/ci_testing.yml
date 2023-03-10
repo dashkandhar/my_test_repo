@@ -47,6 +47,11 @@ jobs:
       run: |
         docker-compose build -d
         docker-compose run web python manage.py test
+      env:
+        # The hostname used to communicate with the PostgreSQL service container
+        POSTGRES_HOST: db
+        # The default PostgreSQL port
+        POSTGRES_PORT: 5432
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
