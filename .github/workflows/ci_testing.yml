@@ -43,7 +43,7 @@ jobs:
 
     - name: Build and test Docker image
       env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        "SECRET_KEY": ${{ secrets.SECRET_KEY }}
         DB_HOST: ${{ secrets.HOST }}
         DB_PORT: ${{ secrets.PORT }}
         DB_NAME: ${{ secrets.NAME }}
