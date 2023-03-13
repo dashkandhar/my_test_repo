@@ -25,11 +25,11 @@ jobs:
       uses: ozaytsev86/create-env-file@v1
       with:
         ENV_SECRET_KEY: ${{ secrets.TEST_API_KEY }}
-        ENV_DB_HOST: ${{ secrets.DB_HOST }}
-        ENV_DB_PORT: ${{ secrets.DB_PORT }}
-        ENV_DB_NAME: ${{ secrets.DB_NAME }}
-        ENV_DB_USER: ${{ secrets.DB_USER }}
-        ENV_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        ENV_HOST: ${{ secrets.DB_HOST }}
+        ENV_PORT: ${{ secrets.DB_PORT }}
+        ENV_NAME: ${{ secrets.DB_NAME }}
+        ENV_USER: ${{ secrets.DB_USER }}
+        ENV_PASSWORD: ${{ secrets.DB_PASSWORD }}
         file-name: keys.env
 
     - name: Build and test Docker image
