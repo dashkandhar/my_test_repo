@@ -14,13 +14,6 @@ jobs:
         image: postgres
 
     steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        envkey_DEBUG: false
-        envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        file_name: keys.env
-        fail_on_empty: false
     - uses: actions/checkout@v2
 
     - name: Set up Python
@@ -31,21 +24,24 @@ jobs:
     - name: Set up environment
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      run: echo "SECRET_KEY=$SECRET_KEY" >> .env
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: |
+        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> keys.env
 
     - name: Build and test Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: false
-       
+
     - name: Run Docker container
       env:
-        DB_HOST: ${{ secrets.HOST}}
-        DB_NAME: ${{ secrets.NAME }}
-        DB_USER: ${{ secrets.USER}}
-        DB_PASSWORD: ${{ secrets.PASSWORD}}
+        DATABASE_URL: postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME
       run: |
-        docker-compose up -d
+        docker-compose --env-file=keys.env up -d
         docker-compose run --rm web python manage.py migrate
         docker-compose run --rm web python manage.py test
