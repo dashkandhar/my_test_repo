@@ -10,12 +10,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_HOST: ${{ secrets.HOST }}
-      DB_PORT: ${{ secrets.PORT }}
-      DB_NAME: ${{ secrets.NAME }}
-      DB_USER: ${{ secrets.USER }}
-      DB_PASSWORD: ${{ secrets.PASSWORD }}
+      export SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      export DB_HOST: ${{ secrets.HOST }}
+      export DB_PORT: ${{ secrets.PORT }}
+      export DB_NAME: ${{ secrets.NAME }}
+      export DB_USER: ${{ secrets.USER }}
+      export DB_PASSWORD: ${{ secrets.PASSWORD }}
     services:
       db:
         image: postgres
