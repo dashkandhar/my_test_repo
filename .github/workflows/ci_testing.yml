@@ -9,14 +9,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     services:
       db:
         image: postgres
 
     steps:
-
     - uses: actions/checkout@v2
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -27,7 +26,7 @@ jobs:
       with:
         context: .
         push: false
-
+       
     - name: Build and test Docker image
       env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -36,12 +35,5 @@ jobs:
           DB_NAME: ${{ secrets.NAME }}
           DB_USER: ${{ secrets.USER }}
           DB_PASSWORD: ${{ secrets.PASSWORD }}
-      run:
-        docker-compose build -d
-        docker-compose run web python manage.py test
-
-    # - name: Upload test results
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: test-results
-    #     path: test-results.xml
+      run: docker-compose build -d
+      run: docker-compose run web python manage.py test
