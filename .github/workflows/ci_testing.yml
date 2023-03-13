@@ -20,17 +20,17 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-
-    - name: Set up environment
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: |
-        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> keys.env
+    
+    - name: Create keys.env
+      uses: ozaytsev86/create-env-file@v1
+      with:
+        ENV_SECRET_KEY: ${{ secrets.TEST_API_KEY }}
+        ENV_DB_HOST: ${{ secrets.DB_HOST }}
+        ENV_DB_PORT: ${{ secrets.DB_PORT }}
+        ENV_DB_NAME: ${{ secrets.DB_NAME }}
+        ENV_DB_USER: ${{ secrets.DB_USER }}
+        ENV_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        file-name: keys.env
 
     - name: Build and test Docker image
       uses: docker/build-push-action@v2
