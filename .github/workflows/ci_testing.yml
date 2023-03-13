@@ -9,44 +9,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_HOST: ${{ secrets.HOST }}
-      DB_PORT: ${{ secrets.PORT }}
-      DB_NAME: ${{ secrets.NAME }}
-      DB_USER: ${{ secrets.USER }}
-      DB_PASSWORD: ${{ secrets.PASSWORD }}
+    
     services:
       db:
         image: postgres
 
     steps:
-    - uses: actions/checkout@v2
 
+    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
-    
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        input_envkey_DEBUG: ${{ secrets.DEBUG }}
-        input_envkey_NAME: ${{ secrets.NAME }}
-        input_envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        input_envkey_USER: ${{ secrets.USER }}
-        input_envkey_PASSWORD: ${{ secrets.PASSWORD }}
-        input_envkey_HOST: ${{ secrets.HOST }}
-        input_envkey_PORT: ${{ secrets.PORT }}
-        file_name: keys.env
-        fail_on_empty: true
-    
+
     - name: Build and test Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: false
-       
 
     - name: Build and test Docker image
       env:
@@ -58,13 +38,10 @@ jobs:
           DB_PASSWORD: ${{ secrets.PASSWORD }}
       run:
         docker-compose build -d
-        docker-compose run web python manage.py test -v 2
+        docker-compose run web python manage.py test
 
-
-
-
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: test-results.xml
+    # - name: Upload test results
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: test-results
+    #     path: test-results.xml

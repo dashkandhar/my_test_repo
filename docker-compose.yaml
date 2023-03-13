@@ -24,9 +24,6 @@ services:
       - 5432:5432
     env_file:
       - keys.env
-    # environment:
-    #   - POSTGRES_PASSWORD=12345678
-
 
 volumes:
   postgres_data:

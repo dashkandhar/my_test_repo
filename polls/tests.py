@@ -20,3 +20,6 @@ class PollTestCase(TestCase):
 
     def test_poll_title(self):
         self.assertEqual(self.poll_1.title, "What's your name ?")
+
+    def test_should_fail(self):
+        self.assertEqual(self.poll_1.title, "0")
