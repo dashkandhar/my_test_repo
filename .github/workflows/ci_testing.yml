@@ -58,7 +58,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.PASSWORD }}
       run:
         docker-compose build -d
-        docker-compose run web python manage.py test
+        docker-compose run web python manage.py test -v 2
 
 
 
