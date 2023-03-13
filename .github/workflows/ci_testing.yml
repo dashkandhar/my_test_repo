@@ -24,7 +24,7 @@ jobs:
     - name: Create keys.env
       uses: ozaytsev86/create-env-file@v1
       with:
-        ENV_SECRET_KEY: ${{ secrets.TEST_API_KEY }}
+        ENV_SECRET_KEY: ${{ secrets.SECRET_KEY }}
         ENV_HOST: ${{ secrets.DB_HOST }}
         ENV_PORT: ${{ secrets.DB_PORT }}
         ENV_NAME: ${{ secrets.DB_NAME }}
@@ -41,8 +41,8 @@ jobs:
     - name: Run Docker container
       env:
         DATABASE_URL: postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME
-        SECRET_KEY: ${{secrets.SECRET_KEY}}
+        SECRET_KEY: "${{ secrets.SECRET_KEY }}"
       run: |
-        docker-compose up -d
-        docker-compose run web python manage.py migrate
-        docker-compose run web python manage.py test
+        docker-compose --env-file=keys.env up -d
+        docker-compose run --rm web python manage.py migrate
+        docker-compose run --rm web python manage.py test
