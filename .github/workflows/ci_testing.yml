@@ -35,5 +35,6 @@ jobs:
           DB_NAME: ${{ secrets.NAME }}
           DB_USER: ${{ secrets.USER }}
           DB_PASSWORD: ${{ secrets.PASSWORD }}
-      run: docker-compose build -d
-      run: docker-compose run web python manage.py test
+      run: 
+          docker-compose build -d
+          docker-compose run web python manage.py test
