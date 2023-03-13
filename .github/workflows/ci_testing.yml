@@ -47,7 +47,6 @@ jobs:
 
     - name: Run Docker container
       env:
-        DATABASE_URL: postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME
         SECRET_KEY: "${{ secrets.SECRET_KEY }}"
       run: |
         docker-compose up -d
