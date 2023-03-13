@@ -13,9 +13,9 @@ jobs:
       db:
         image: postgres
         env:
-          POSTGRES_DB: ${{ secrets.NAME }}
-          POSTGRES_USER: ${{ secrets.USER }}
-          POSTGRES_PASSWORD: ${{ secrets.PASSWORD }}
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
 
@@ -47,7 +47,7 @@ jobs:
 
     - name: Run Docker container
       env:
-        SECRET_KEY: "${{ secrets.SECRET_KEY }}"
+        SECRET_KEY: "django-insecure-l#)$b56v$+u^sithqlgb_#l18dk(7o1_%%npk(t7!^of25z9_t"
       run: |
         docker-compose up -d
         docker-compose run --rm web python manage.py migrate
