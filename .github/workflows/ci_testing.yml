@@ -53,12 +53,12 @@ jobs:
         docker-compose build -d
         docker-compose run web python manage.py test
       env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DB_HOST: ${{ secrets.HOST }}
-        DB_PORT: ${{ secrets.PORT }}
-        DB_NAME: ${{ secrets.NAME }}
-        DB_USER: ${{ secrets.USER }}
-        DB_PASSWORD: ${{ secrets.PASSWORD }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DB_HOST: ${{ secrets.HOST }}
+          DB_PORT: ${{ secrets.PORT }}
+          DB_NAME: ${{ secrets.NAME }}
+          DB_USER: ${{ secrets.USER }}
+          DB_PASSWORD: ${{ secrets.PASSWORD }}
 
 
 
