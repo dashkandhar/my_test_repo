@@ -43,6 +43,6 @@ jobs:
         DATABASE_URL: postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME
         SECRET_KEY: ${{secrets.SECRET_KEY}}
       run: |
-        docker-compose --env-file=keys.env up -d
-        docker-compose run --rm web python manage.py migrate
-        docker-compose run --rm web python manage.py test
+        docker-compose up -d
+        docker-compose run web python manage.py migrate
+        docker-compose run web python manage.py test
