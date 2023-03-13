@@ -37,9 +37,4 @@ jobs:
           DB_PASSWORD: ${{ secrets.PASSWORD }}
       run: 
           docker-compose build -d
-          docker-compose run web python manage.py test
-    
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      job_summary: true
+          docker-compose run web python manage.py test --verbosty 3
