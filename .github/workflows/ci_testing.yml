@@ -25,9 +25,12 @@ jobs:
         ENV_SECRET_KEY: "django-insecure-l#)$b56v$+u^sithqlgb_#l18dk(7o1_%%npk(t7!^of25z9_t"
         ENV_HOST: "db"
         ENV_PORT: 5432
-        ENV_NAME: "postgres"
-        ENV_USER: "postgres"
-        ENV_PASSWORD: "postgres"
+        ENV_NAME: postgres
+        ENV_USER: postgres
+        ENV_PASSWORD: postgres
+        ENV_POSTGRES_DB: postgres
+        ENV_POSTGRES_USER: postgres
+        ENV_POSTGRES_PASSWORD: postgres
         file-name: keys.env
 
     - name: Build and test Docker image
