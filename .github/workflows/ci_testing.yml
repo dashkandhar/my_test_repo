@@ -32,7 +32,7 @@ jobs:
       uses: ozaytsev86/create-env-file@v1
       with:
         ENV_SECRET_KEY: "django-insecure-l#)$b56v$+u^sithqlgb_#l18dk(7o1_%%npk(t7!^of25z9_t"
-        ENV_HOST: "localhost"
+        ENV_HOST: "db"
         ENV_PORT: 5432
         ENV_NAME: "postgres"
         ENV_USER: "postgres"
