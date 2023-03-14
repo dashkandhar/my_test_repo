@@ -41,5 +41,7 @@ jobs:
         SECRET_KEY: "django-insecure-l#)$b56v$+u^sithqlgb_#l18dk(7o1_%%npk(t7!^of25z9_t"
       run: |
         docker-compose up -d
+        docker-compose logs db
+        docker-compose logs web
         docker-compose run --rm web python manage.py migrate
         docker-compose run --rm web python manage.py test
